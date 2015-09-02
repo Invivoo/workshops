@@ -181,4 +181,33 @@ Here are the outputs from running the main class above.
 2015-09-02 12:44:58.196  INFO 6748 --- [           main] c.i.springboot.keyconcepts.KeyConcepts   : Started KeyConcepts in 4.553 seconds (JVM running for 5.142)
 ```
 
-You now have an embedded Tomcat listening for request on port 8080. Any resources found in classpath:/resources will be avaiable to http://localhost:8080/* (ex : http://localhost:800/hello-world.html).
+You now have an embedded Tomcat listening for request on port 8080. Any resources found in classpath:/resources will be avaiable to http://localhost:8080/* (ex : <a target="_blank" href="http://localhost:800/hello-world.html">http://localhost:8080/hello-world.html</a>).
+
+### Package your application
+
+Spring Boot provides a maven plugin that will generates a standlone JAR containing all the dependencies required by your project. If your application uses an embedded http server, it will be also packaged inside your final jar.
+
+Add the following plugin declaration to your `pom.xml` : 
+
+```
+<build>
+	<plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+               </plugin>
+	</plugins>
+</build>
+```
+
+Build your application with maven.
+
+```
+$ mvn clean install
+```
+
+Run your application
+
+```
+java -jar target/key-concepts-0.0.1-SNAPSHOT.jar
+```
