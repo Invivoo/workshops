@@ -7,90 +7,87 @@
   1. [Pourquoi Spring Boot ?](#pourquoi-spring-boot-)
   1. [Modules Spring supportés](#modules-spring-supportés)
 1. [Concepts Clés](#concepts-clés)
-  1. [Project setup](#project-setup)
-  1. [Bootstrap your application](#bootstrap-your-application)
-  1. [Package your application](#package-your-application)
+  1. [Configuration projet](#configuratipn-projet)
+  1. [Amorcer votre application](#amorcer-votre-application)
+  1. [Packager votre application](#packager-votre-application)
 1. Example 1 - Database Extraction batch - TO BE DONE
 1. Example 2 - Secured Rest API - TO BE DONE
 
 ## Prérequis
 
-* Basic Maven knowledge
-* Basic Spring Knowledge
+* Connaissance maven de base.
+* Connaissance Spring de base et configuration par annotation.
 
-## Presentation
+## Présentation
 
-### What is Spring Boot ?
+### Pourquoi Spring Boot ?
 
-Spring Boot is about applying COC (Covention Over Configuration) to the Spring Framework. Spring Boot helps you build 
-applications as fast possible without having to take care of any boiler plate configuration or declaration. 
+Spring Boot apporter le patron de conception COC (Covention Over Configuration) au Framework Spring. Spring Boot vous aide à construire des applications le plus rapidement possible sans avoir à répéter des déclarations ou des configurations de beans standard.
 
-Here are the main features :
+Voici les principales fonctionnalités :
 
-* Provides pre configured beans ready to be used for any Spring module you relie on.
-* Opinionated out of the box by letting you easily overwrite any default component or configuration.
-* No code generation and no XML configuration required.
-* Easily packages your application to a runnable jar with `java -jar` or to a conventionnal war file.
+* Fourni des beans pré configuré pour chacun des modules Spring nécessaire à votre application.
+* Approche de configuration opiniâtre pour les composants mais facile à surcharger pour un comportement personalisé.
+* Aucune génération de code ou de configuration XML.
+* Packager facilement votre application sous un jar exécutable avec la commande `java -jar`ou sous un war conventionnel.
 
-### Why Spring Boot ?
+### Pourquoi Spring Boot ?
 
-* Building Spring based application usally ends in declaring the same beans over and over again, projects after projects.
-* Start up you projects super fast and focus on your business requirements.
-* Gives your development and deployed environment the same runtime setup.
-* Every Spring 'Getting Started' guides are now based on Spring Boot, no need to resist.
+* La construction d'applications Spring se traduit par la déclaration à réptition de beans, projets après projets.
+* Permet de démarrer un projet très rapidement et de se concentrer sur les besoins métiers.
+* Le packaging de Spring Boot uniformise le déploiement de l'application pour tous les environments (pas de conteneur).
+* Tous les tutoriaux officiels de Spring sont maintenant basé sur Spring Boot (vous n'y échapperez pas !).
 
-### Supported Spring modules
+### Modules Spring supportés
 
-Here is the list of the Spring Projects supported by Spring Boot as of version 1.3.0 :
+Voici la liste des modules Spring supportés en version Spring Boot 1.3.0 :
 
-Name  | Description
+Nom  | Description
 ------------- | -------------
-spring-boot-starter  | The core Spring Boot starter, including auto-configuration support, logging and YAML.
-spring-boot-starter-actuator  | Production ready features to help you monitor and manage your application.
-spring-boot-starter-amqp | Support for the 'Advanced Message Queuing Protocol' via spring-rabbit.
-spring-boot-starter-aop | Support for aspect-oriented programming including spring-aop and AspectJ.
-spring-boot-starter-artemis | Support for “Java Message Service API” via Apache Artemis.
-spring-boot-starter-batch | Support for 'Spring Batch' including HSQLDB database.
-spring-boot-starter-cache | Support for Spring’s Cache abstraction.
-spring-boot-starter-cloud-connectors | Support for 'Spring Cloud Connectors' which simplifies connecting to services in cloud platforms like Cloud Foundry and Heroku.
-spring-boot-starter-data-elasticsearch | Support for the Elasticsearch search and analytics engine including spring-data-elasticsearch.
-spring-boot-starter-data-gemfire | Support for the GemFire distributed data store including spring-data-gemfire.
-spring-boot-starter-data-jpa | Support for the “Java Persistence API” including spring-data-jpa, spring-orm and Hibernate.
-spring-boot-starter-data-mongodb | Support for the MongoDB NoSQL Database, including spring-data-mongodb.
-spring-boot-starter-data-rest | Support for exposing Spring Data repositories over REST via spring-data-rest-webmvc.
-spring-boot-starter-data-solr | Support for the Apache Solr search platform, including spring-data-solr.
-spring-boot-starter-freemarker | Support for the FreeMarker templating engine.
-spring-boot-starter-groovy-templates | Support for the Groovy templating engine.
-spring-boot-starter-hateoas | Support for HATEOAS-based RESTful services via spring-hateoas.
-spring-boot-starter-hornetq | Support for “Java Message Service API” via HornetQ.
-spring-boot-starter-integration | Support for common spring-integration modules.
-spring-boot-starter-jdbc | Support for JDBC databases.
-spring-boot-starter-jersey | Support for the Jersey RESTful Web Services framework.
-spring-boot-starter-jta-atomikos | Support for JTA distributed transactions via Atomikos.
-spring-boot-starter-jta-bitronix | Support for JTA distributed transactions via Bitronix.
-spring-boot-starter-mail | Support for javax.mail.
-spring-boot-starter-mobile | Support for spring-mobile.
-spring-boot-starter-mustache | Support for the Mustache templating engine.
-spring-boot-starter-redis | Support for the REDIS key-value data store, including spring-redis.
-spring-boot-starter-security | Support for spring-security.
-spring-boot-starter-social-facebook | Support for spring-social-facebook.
-spring-boot-starter-social-linkedin | Support for spring-social-linkedin.
-spring-boot-starter-social-twitter | Support for spring-social-twitter.
-spring-boot-starter-test | Support for common test dependencies, including JUnit, Hamcrest and Mockito along with the spring-test module.
-spring-boot-starter-thymeleaf | Support for the Thymeleaf templating engine, including integration with Spring.
-spring-boot-starter-velocity | Support for the Velocity templating engine.
-spring-boot-starter-web | Support for full-stack web development, including Tomcat and spring-webmvc.
-spring-boot-starter-websocket | Support for WebSocket development.
-spring-boot-starter-ws | Support for Spring Web Services.
+spring-boot-starter-actuator  | Module de monitoring pour la surveillance de l'application.
+spring-boot-starter-amqp | Support pour 'Advanced Message Queuing Protocol' via spring-rabbit.
+spring-boot-starter-aop | Support pour la programmtion orienté par aspect avec spring-aop et AspectJ.
+spring-boot-starter-artemis | Support pour “Java Message Service API” via Apache Artemis.
+spring-boot-starter-batch | Support pour 'Spring Batch' includant la base de donnée HSQLDB.
+spring-boot-starter-cache | Support d'abstraction pour Spring’s Cache.
+spring-boot-starter-cloud-connectors | Support pour 'Spring Cloud Connectors' qui simplifient la connection à des platformes Cloud comme Cloud Foundry et Heroku.
+spring-boot-starter-data-elasticsearch | Support pour le moteur de recherche et d'analytique en incluant  spring-data-elasticsearch.
+spring-boot-starter-data-gemfire | Support pour le store distribué GemFire en incluant spring-data-gemfire.
+spring-boot-starter-data-jpa | Support pour “Java Persistence API” en incluant spring-data-jpa, spring-orm and Hibernate.
+spring-boot-starter-data-mongodb | Support pour la base de données NoSQL MongoDB en incluant spring-data-mongodb.
+spring-boot-starter-data-rest | Support pour exposer des repositories Spring Data en REST via spring-data-rest-webmvc.
+spring-boot-starter-data-solr | Support pour le moeteur de recherche Apache Solr en incluant spring-data-solr.
+spring-boot-starter-freemarker | Support pour le moteur de templating FreeMarker.
+spring-boot-starter-groovy-templates | Support pour le moteur de templating Groovy.
+spring-boot-starter-hateoas | Support pour services web HATEOAS RESTful via spring-hateoas.
+spring-boot-starter-hornetq | Support pour “Java Message Service API” via HornetQ.
+spring-boot-starter-integration | Support pour les modules communs de spring-integration.
+spring-boot-starter-jdbc | Support pour les bases de données avec JDBC.
+spring-boot-starter-jersey | Support pour le framework de services web RESTful Jersey.
+spring-boot-starter-jta-atomikos | Support pour transactions distribuées JTA via Atomikos.
+spring-boot-starter-jta-bitronix | Support pour transactions distribuées JTA via Bitronix.
+spring-boot-starter-mail | Support pour javax.mail.
+spring-boot-starter-mobile | Support pour spring-mobile.
+spring-boot-starter-mustache | Support pour le moteur de template Mustache.
+spring-boot-starter-redis | Support pour le store de données clé/valeur REDIS en incluant spring-redis.
+spring-boot-starter-security | Support pour spring-security.
+spring-boot-starter-social-facebook | Support pour spring-social-facebook.
+spring-boot-starter-social-linkedin | Support pour spring-social-linkedin.
+spring-boot-starter-social-twitter | Support pour spring-social-twitter.
+spring-boot-starter-test | Support pour les différentes dépendences de tests unitaire en incluant JUnit, Hamcrest and Mockito ainsi que spring-test module.
+spring-boot-starter-thymeleaf | Support pour le moteur de templating Thymeleaf.
+spring-boot-starter-velocity | Support pour le moteur de templating Velocity.
+spring-boot-starter-web | Support for développement de la pile web complête en incluant Tomcat et spring-webmvc.
+spring-boot-starter-websocket | Support pour le développement WebSocket.
+spring-boot-starter-ws | Support pour Spring Web Services.
 
-## Key Concepts
+## Concepts Clés
 
-### Project setup
+### Configuration projet
 
-#### Inherting the starter parent
+#### Hériter de starter parent
 
-Declaring the starter parent will help you defines the Spring Boot dependencies needed for your project.
-
+Déclarer le starter parent pour faciliter la déclaration des dépendences de Spring Boot pour votre projet.
 ```
 <!-- Inherit defaults from Spring Boot -->
 <parent>
@@ -100,7 +97,7 @@ Declaring the starter parent will help you defines the Spring Boot dependencies 
 </parent>
 ```
 
-Then choose the Spring Boot starter for the Spring modules required by your application. for our exemple, we will build a simple webapp serverving content from classpath:/resources.
+Ensuite il faut sélectionner les composants Spring Boot pour les modules spring requise pour notre application. Dans notre exemple, nous construirons une webapp simple qui sert du contenu localisé dans l'arborescence classpath:/resources.
 
 ```
 <dependencies>
@@ -110,23 +107,13 @@ Then choose the Spring Boot starter for the Spring modules required by your appl
   </dependency>
 </dependencies>
 ```
+Le fonctionnalités principales de Spring Boot seront disponible à l'application déclarant en dépendences n'importe quel module starter de Spring Boot.
 
-The Spring Boot core features will be available to your application by declaring any of the Spring Boot starter dependencies.
+### Amorcer votre application
 
-### Bootstrap your application
+Sprinb Boot fonctionne principalement par annotation. au grand désarroi de ceux qui tiennent toujours à la configuration Spring par fichiers XML. Démarrer une application avec Spring Boot nécessite d'exécuter la méthode statique **org.springframework.boot.SpringApplication.run(...)** depuis n'importe quel endroit. Mon conseil est de déclarer l'appel depuis la méthod statique main de votre application. Ainsi vous pourrez démarrer votre application avec la commande `java -jar`.
 
-Spring Boot is mainly about annotations. Sorry for the likes  who still holds on to old XML configuration. 
-Starting a Spring Boot Application requires that you execute the 
-**org.springframework.boot.SpringApplication.run(...)** method from anywhere. 
-My advice is to call it directly from a static main method
-so you can startup your application with a 'java -jar' command.
-
-**SpringApplication.run(...)** takes a class as an argument. 
-Spring Boot will then lookup for java annotations within that class. 
-Since it will find **@SpringBootApplication**, an **AnnotationConfigEmbeddedWebApplicationContext** 
-will be created. This application context is going to be your Spring Container and will filled with
-beans configured by Spring Boot and with others available for component 
-scanning inside the **.invivoo.springboot.keyconcepts** package.
+**SpringApplication.run(...)** prend comme argument une classe. Spring Boot recherchera les annotations java parmis celle qui sera passé en paramètre. Comme il retrouve l'annotation **@SpringBootApplication**, un **AnnotationConfigEmbeddedWebApplicationContext** sera instancié. Ce conteneur Spring sera peuplé par tous les beans auto configurés fourni par le module Spring Boot que vous aurez mis en dépendences ainsi que tout ceux déclaré par annotation dans le package de la classe passé en paramètre (**.invivoo.springboot.keyconcepts**).
 
 ```
 package com.invivoo.springboot.keyconcepts;
@@ -148,7 +135,7 @@ public class KeyConcepts {
 }
 ```
 
-Here are the outputs from running the main class above.
+Voici la sortie de console du lancement de la méthode main ci dessus :
 
 ```
   .   ____          _            __ _ _
@@ -181,13 +168,13 @@ Here are the outputs from running the main class above.
 2015-09-02 12:44:58.196  INFO 6748 --- [           main] c.i.springboot.keyconcepts.KeyConcepts   : Started KeyConcepts in 4.553 seconds (JVM running for 5.142)
 ```
 
-You now have an embedded Tomcat listening for request on port 8080. Any resources found in classpath:/resources will be avaiable to http://localhost:8080/* (ex : <a target="_blank" href="http://localhost:800/hello-world.html">http://localhost:8080/hello-world.html</a>).
+Vous avez maintenant un Tomcat embarqué écoutant le port 8080. Toutes resources situé dans classpath:/resources sera disponible à l'url http://localhost:8080/* (ex : <a target="_blank" href="http://localhost:800/hello-world.html">http://localhost:8080/hello-world.html</a>).
 
-### Package your application
+### Packager votre application
 
-Spring Boot provides a maven plugin that will generates a standlone JAR containing all the dependencies required by your project. If your application uses an embedded http server, it will be also packaged inside your final jar.
+Spring Boot fourni un plugin maven qui permettra d'ajouter toutes les dépendences de votre projet ainsi que la configuration néssaire afin que le jar final produit lors de la séquence maven package soit exécutable en autonome.
 
-Add the following plugin declaration to your `pom.xml` : 
+Ajouter la déclaration de plugin suivnate à votre `pom.xml` : 
 
 ```
 <build>
@@ -200,13 +187,13 @@ Add the following plugin declaration to your `pom.xml` :
 </build>
 ```
 
-Build your application with maven.
+Builder votre application avec maven.
 
 ```
 $ mvn clean install
 ```
 
-Run your application
+Exécuter le jar produit.
 
 ```
 java -jar target/key-concepts-0.0.1-SNAPSHOT.jar
