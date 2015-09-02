@@ -22,8 +22,8 @@
 
 ### What is Spring Boot ?
 
-Spring Boot is about applying COC (Covention Over Configuration) to the Spring Framework. Spring Boot helps you build 
-applications as fast possible without having to take care of any boiler plate configuration or declaration. 
+Spring Boot is about applying COC (Covention Over Configuration) to the Spring Framework. Spring Boot helps you build
+applications as fast possible without having to take care of any boiler plate configuration or declaration.
 
 Here are the main features :
 
@@ -115,17 +115,17 @@ The Spring Boot core features will be available to your application by declaring
 
 ### Bootstrap your application
 
-Spring Boot is mainly about annotations. Sorry for the likes  who still holds on to old XML configuration. 
-Starting a Spring Boot Application requires that you execute the 
-**org.springframework.boot.SpringApplication.run(...)** method from anywhere. 
+Spring Boot is mainly about annotations. Sorry for the likes  who still holds on to old XML configuration.
+Starting a Spring Boot Application requires that you execute the
+**org.springframework.boot.SpringApplication.run(...)** method from anywhere.
 My advice is to call it directly from a static main method
 so you can startup your application with a 'java -jar' command.
 
-**SpringApplication.run(...)** takes a class as an argument. 
-Spring Boot will then lookup for java annotations within that class. 
-Since it will find **@SpringBootApplication**, an **AnnotationConfigEmbeddedWebApplicationContext** 
+**SpringApplication.run(...)** takes a class as an argument.
+Spring Boot will then lookup for java annotations within that class.
+Since it will find **@SpringBootApplication**, an **AnnotationConfigEmbeddedWebApplicationContext**
 will be created. This application context is going to be your Spring Container and will filled with
-beans configured by Spring Boot and with others available for component 
+beans configured by Spring Boot and with others available for component
 scanning inside the **.invivoo.springboot.keyconcepts** package.
 
 ```
@@ -187,7 +187,7 @@ You now have an embedded Tomcat listening for request on port 8080. Any resource
 
 Spring Boot provides a maven plugin that will generates a standlone JAR containing all the dependencies required by your project. If your application uses an embedded http server, it will be also packaged inside your final jar.
 
-Add the following plugin declaration to your `pom.xml` : 
+Add the following plugin declaration to your `pom.xml` :
 
 ```
 <build>
