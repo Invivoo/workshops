@@ -1,19 +1,19 @@
 # Rapid Application Development with Spring-Boot
 
 ## Table of Contents
-1. [Prerequisite](#prerequisite)
-1. [Presentation](#presentation)
-  1. [What is Spring Boot ?](#what-is-spring-boot-)
-  1. [Why Spring Boot ?](#why-spring-boot-)
-  1. [Supported Spring modules](#supported-spring-modules)
-1. [Key Concepts](#key-concepts)
+1. [Prérequis](#prérequis)
+1. [Présentation](#presentation)
+  1. [Qu'est-ce que Spring Boot ?](#what-is-spring-boot-)
+  1. [Pourquoi Spring Boot ?](#why-spring-boot-)
+  1. [Modules Spring supportés](#modules-spring-supportés)
+1. [Concepts Clés](#concepts-cles)
   1. [Project setup](#project-setup)
   1. [Bootstrap your application](#bootstrap-your-application)
   1. [Package your application](#package-your-application)
 1. Example 1 - Database Extraction batch - TO BE DONE
 1. Example 2 - Secured Rest API - TO BE DONE
 
-## Prerequisite
+## Prérequis
 
 * Basic Maven knowledge
 * Basic Spring Knowledge
