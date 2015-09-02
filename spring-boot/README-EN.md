@@ -1,5 +1,7 @@
 # Rapid Application Development with Spring-Boot
 
+Version française disponible [ici](README.md).
+
 ## Table of Contents
 1. [Prerequisite](#prerequisite)
 1. [Presentation](#presentation)
