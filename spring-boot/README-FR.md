@@ -3,10 +3,10 @@
 ## Table of Contents
 1. [Prérequis](#prérequis)
 1. [Présentation](#presentation)
-  1. [Qu'est-ce que Spring Boot ?](#what-is-spring-boot-)
-  1. [Pourquoi Spring Boot ?](#why-spring-boot-)
+  1. [Qu'est-ce que Spring Boot ?](#qu-est-ce-que-spring-boot-)
+  1. [Pourquoi Spring Boot ?](#pourquoi-spring-boot-)
   1. [Modules Spring supportés](#modules-spring-supportés)
-1. [Concepts Clés](#concepts-cles)
+1. [Concepts Clés](#concepts-clés)
   1. [Project setup](#project-setup)
   1. [Bootstrap your application](#bootstrap-your-application)
   1. [Package your application](#package-your-application)
