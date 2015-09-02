@@ -1,8 +1,8 @@
 # Rapid Application Development with Spring-Boot
 
 ## Table of Contents
-1. Prerequisite
-1. Presentation
+1. [Prerequisite](#prerequisite)
+1. [Presentation](#presentation)
   1. What is Spring Boot ?
   1. Why Spring Boot ?
   1. Supported Spring modules
