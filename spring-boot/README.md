@@ -4,7 +4,7 @@
 1. [Prerequisite](#prerequisite)
 1. [Presentation](#presentation)
   1. [What is Spring Boot ?](#what-is-spring-boot-)
-  1. [Why Spring Boot ?](#why-spring-boot)
+  1. [Why Spring Boot ?](#why-spring-boot-)
   1. [Supported Spring modules](#supported-spring-modules)
 1. [Key Concepts](#key-concepts)
   1. [Project setup](#project-setup)
