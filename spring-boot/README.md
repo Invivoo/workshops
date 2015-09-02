@@ -151,7 +151,6 @@ public class KeyConcepts {
 Here are the outputs from running the main class above.
 
 ```
-
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -181,3 +180,5 @@ Here are the outputs from running the main class above.
 2015-09-02 12:44:58.194  INFO 6748 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
 2015-09-02 12:44:58.196  INFO 6748 --- [           main] c.i.springboot.keyconcepts.KeyConcepts   : Started KeyConcepts in 4.553 seconds (JVM running for 5.142)
 ```
+
+You now have an embedded Tomcat listening for request on port 8080. Any resources found in classpath:/resources will be avaiable to http://localhost:8080/* (ex : http://localhost:800/hello-world.html).
