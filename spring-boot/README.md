@@ -100,7 +100,7 @@ Declaring the starter parent will help you defines the Spring Boot dependencies 
 </parent>
 ```
 
-Then choose the Spring Boot starter for the Spring modules required by your application (for ex : `spring-boot-starter-web`).
+Then choose the Spring Boot starter for the Spring modules required by your application. for our exemple, we will build a simple webapp serverving content from classpath:/resources.
 
 ```
 <dependencies>
@@ -111,11 +111,11 @@ Then choose the Spring Boot starter for the Spring modules required by your appl
 </dependencies>
 ```
 
-The Spring Boot core features will be avaiable to your application by declaring any of the Spring Boot starter dependencies.
+The Spring Boot core features will be available to your application by declaring any of the Spring Boot starter dependencies.
 
 ### Bootstrap your application
 
-Spring Boot is mainly about annotations. Sorry for the likes would still holds on to old XML configuration. 
+Spring Boot is mainly about annotations. Sorry for the likes  who still holds on to old XML configuration. 
 Starting a Spring Boot Application requires that you execute the 
 **org.springframework.boot.SpringApplication.run(...)** method from anywhere. 
 My advice is to call it directly from a static main method
