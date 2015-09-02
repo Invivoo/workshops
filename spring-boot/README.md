@@ -1,4 +1,6 @@
-# Rapid Application Development with Spring-Boot
+# Développement RAD avec Spring Boot
+
+English version available [here](README-EN.md).
 
 ## Table of Contents
 1. [Prérequis](#prérequis)
