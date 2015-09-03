@@ -12,8 +12,7 @@ English version available [here](README-EN.md).
   1. [Configuration projet](#configuratipn-projet)
   1. [Amorcer votre application](#amorcer-votre-application)
   1. [Packager votre application](#packager-votre-application)
-1. Example 1 - Database Extraction batch - TO BE DONE
-1. Example 2 - Secured Rest API - TO BE DONE
+1. [Example - API Rest sécurisé](#example-api-rest-sécurisé)
 
 ## Prérequis
 
@@ -200,3 +199,5 @@ Exécuter le jar produit.
 ```
 java -jar target/key-concepts-0.0.1-SNAPSHOT.jar
 ```
+
+## Example - API Rest sécurisé
