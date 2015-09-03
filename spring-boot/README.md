@@ -12,12 +12,13 @@ English version available [here](README-EN.md).
   1. [Configuration projet](#configuratipn-projet)
   1. [Amorcer votre application](#amorcer-votre-application)
   1. [Packager votre application](#packager-votre-application)
-1. [Example - API Rest sécurisé](#example-api-rest-sécurisé)
+1. [Example - API Rest sécurisé](#example---api-rest-sécurisé)
 
 ## Prérequis
 
-* Connaissance maven de base.
-* Connaissance Spring de base et configuration par annotation.
+* Connaissances maven de base.
+* Connaissances Spring de base et configuration par annotation.
+* Connaissances Hibernate de base.
 
 ## Présentation
 
@@ -41,7 +42,7 @@ Voici les principales fonctionnalités :
 
 ### Modules Spring supportés
 
-Voici la liste des modules Spring supportés en version Spring Boot 1.3.0 :
+Voici la liste des modules Spring supportés en version Spring Boot 1.2.5 :
 
 Nom  | Description
 ------------- | -------------
@@ -94,7 +95,7 @@ Déclarer le starter parent pour faciliter la déclaration des dépendences de S
 <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.3.0.BUILD-SNAPSHOT</version>
+    <version>1.2.5.RELEASE</version>
 </parent>
 ```
 
@@ -180,10 +181,10 @@ Ajouter la déclaration de plugin suivnate à votre `pom.xml` :
 ```
 <build>
 	<plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-               </plugin>
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
 	</plugins>
 </build>
 ```
@@ -201,3 +202,359 @@ java -jar target/key-concepts-0.0.1-SNAPSHOT.jar
 ```
 
 ## Example - API Rest sécurisé
+
+L'objectif de cette démonstration consiste à vous montrer la rapidité avec laquelle le métier de votre application peut être exposé de manière sécurisé à travers une interface web RESTfull. 
+
+Voici les fonctionnalités offerte pas notre application :
+
+* Consultation / ajout / suppression d'actions.
+* consultation / ajout / suppression de cotation d'actions.
+
+Notre application sera basé sur les technologies suivante : 
+
+* Spring Data Jpa pour la persistence de nos entités métiers.
+* Spring WebMCV pour exposer nos entités métiers.
+* Spring Security pour gérer l'accès à ces ressources.
+* HSQLDB comme base de données mémoire embarqué.
+
+La démonstration fera usage d'AngularJS au sein des pages HTML fourni par le service pour démontrer les intéractions RESTfull avec l'api que nous allons construire. Les explications concernant la partie cliente seront brèves puisque le workshop n'a pas pour but de présenter AngularJS.
+
+### Configuration du projet
+
+Déclaration du starter parent Spring Boot dans notre `pom.xml`
+
+```
+<!-- Inherit defaults from Spring Boot -->
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.2.5.RELEASE</version>
+</parent>
+```
+
+Notre projet nécessite donc les modules Spring Boot suivants :
+
+* spring-boot-starter-data-jpa
+* spring-boot-starter-web
+* spring-boot-security
+
+En complément, nous utiliserons une base de données HSQLDB embarqué en mémoire. Elle facilitera notre développément
+
+Il n'y a qu'à les déclarer en dépendences au sein du `pom.xml`
+
+```
+<dependencies>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-jpa</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-security</artifactId>
+	</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
+</dependencies>
+```
+
+### Création de nos entités métiers
+
+StockQuote.java
+
+```
+package com.invivoo.springboot.securedrestapi.entity;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class StockQuote {
+	private long id;
+	private BigDecimal quote;
+	private Date timestamp;
+
+	public StockQuote() {
+
+	}
+
+	public StockQuote(long id, BigDecimal quote, Date timestamp) {
+		this.id = id;
+		this.quote = quote;
+		this.timestamp = timestamp;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public BigDecimal getQuote() {
+		return quote;
+	}
+
+	public void setQuote(BigDecimal quote) {
+		this.quote = quote;
+	}
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+}
+```
+
+Stock.java
+
+```
+package com.invivoo.springboot.securedrestapi.entity;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Stock {
+	private long id;
+	private String name;
+	private String isin;
+	private List<StockQuote> stockQuotes;
+
+	public Stock() {
+
+	}
+
+	public Stock(long id, String name, String isin, List<StockQuote> stockQuotes) {
+		this.id = id;
+		this.name = name;
+		this.isin = isin;
+		this.stockQuotes = stockQuotes;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getIsin() {
+		return isin;
+	}
+
+	public void setIsin(String isin) {
+		this.isin = isin;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL)
+	public List<StockQuote> getStockQuotes() {
+		return stockQuotes;
+	}
+
+	public void setStockQuotes(List<StockQuote> stockQuotes) {
+		this.stockQuotes = stockQuotes;
+	}
+}
+```
+
+### Implémentation de la persistence des entités.
+
+Nous utiliserons Spring Data JPA pour gérer la persistence de ces entités. Ce workshop n'a pas pour but de d'expliquer le fonctionnement de Spring Data JPA mais en voici la principale fonctionnalité. Spring Data JPA s'occupe d'implémenter automatiquement les Data Access Object (DAO) des entités JPA de notre projet. Ainsi, l'outil nous fourni les implémentation nécessaire pour réaliser des opérations CRUD sur nos entités sans avoir à coder quoi que ce soit. Pour ce faire, nous devons simplement déclarer une interface qui hérite de JPARepository typé avec notre entité JPA.
+
+Déclaration de notre DAO pour gérer notre entity Stock :
+
+```
+package com.invivoo.springboot.securedrestapi.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.invivoo.springboot.securedrestapi.entity.Stock;
+
+public interface StockRepository extends JpaRepository<Stock, Long> {
+
+}
+```
+
+Spring Data JPA qui sera initialisé par Spring Boot s'occupera de scanner notre package **com.invivoo.springboot.securedrestapi** pour y rechercher des interfaces héritant de JPARepository. Le framework construira ensuite l'implémentation de l'interface nécessaire pour réaliser les opérations CRUD basique. Cette implémentation sera donc disponible à notre application pour une injection par le conteneur Spring.
+
+Dans le cadre de notre exemple, nous n'avons pas besoin de DAO pour StockQuote puisque cette dernière ont été configuré pour être cascadés lors de la sauvegarde de notre entité Stock.
+
+```
+@OneToMany(cascade = CascadeType.ALL)
+public List<StockQuote> getStockQuotes() {
+	return stockQuotes;
+}
+```
+
+### Implémentation de la couche Service
+
+La couche service sert habituellement à la manipulation métier. Toute manipulations ou validation fonctionnelle doit normalement s'y retrouve. Cette couche correspond au liens entre la couche controleur et celle de la persistence.
+
+StockService.java
+
+```
+package com.invivoo.springboot.securedrestapi.service;
+
+import java.util.List;
+
+import com.invivoo.springboot.securedrestapi.entity.Stock;
+
+public interface StockService {
+	List<Stock> findAll();
+
+	Stock findOne(long id);
+
+	Stock save(Stock stock);
+}
+```
+
+StockServiceImpl.java
+
+```
+package com.invivoo.springboot.securedrestapi.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.invivoo.springboot.securedrestapi.entity.Stock;
+import com.invivoo.springboot.securedrestapi.repository.StockRepository;
+import com.invivoo.springboot.securedrestapi.service.StockService;
+
+@Service
+public class StockServiceImpl implements StockService {
+	@Resource
+	private StockRepository stockRepository;
+
+	@Override
+	public List<Stock> findAll() {
+		return stockRepository.findAll();
+	}
+
+	@Override
+	public Stock findOne(long id) {
+		return stockRepository.findOne(id);
+	}
+
+	@Override
+	public Stock save(Stock stock) {
+		return stockRepository.save(stock);
+	}
+}
+```
+
+### Implémentation du controleur WebMVC pour l'entité Stock
+
+La classe StockController servira à déclarer les point d'accès de notre Web Service REST. Cette implémentation est très standard aux fonctionnalités classiques offerte par Spring Web MVC.
+
+StockController.java
+
+```
+package com.invivoo.springboot.securedrestapi.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.invivoo.springboot.securedrestapi.entity.Stock;
+import com.invivoo.springboot.securedrestapi.service.StockService;
+
+@Controller
+@ResponseBody
+@RequestMapping(value = "/stock", produces = MediaType.APPLICATION_JSON_VALUE)
+public class StockController {
+	@Resource
+	private StockService stockService;
+
+	@RequestMapping(method = RequestMethod.GET)
+	public List<Stock> findAll() {
+		return stockService.findAll();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public Stock findOne(@PathVariable long id) {
+		return stockService.findOne(id);
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public Stock save(@RequestBody Stock stock) {
+		return stockService.save(stock);
+	}
+}
+```
+
+### Fournir un petit jeu de donnée
+
+Nous verrons plus tard comment Spring Boot s'occupe de configurer automatiquement la base de données embarqué HSQLDB. Pour l'instant, vous pouvez fournir un fichier `data.sql` dans le classpath (`src/main/resources`) pour initialiser des données de tests.
+
+data.sql
+
+```
+INSERT INTO PUBLIC.STOCK (ID, NAME, ISIN) VALUES (1, 'ACCOR', 'FR0000120404');
+INSERT INTO PUBLIC.STOCK (ID, NAME, ISIN) VALUES (2, 'AIR LIQUIDE', 'FR0000120073');
+INSERT INTO PUBLIC.STOCK (ID, NAME, ISIN) VALUES (3, 'ALSTOM', 'FR0010220475');
+```
+
+Spring Boot initialisera une base de donnée vide, générera le schéma à l'aide HBM2DDL de Hibernate puis exécutera data.sql afin d'importer des données pour vos développement. Il faut toujours garder à l'esprit que cette fonctionnalité est configurable et désactivable à travers les options Spring Boot que nous verrons plus tard.
+
+### Implémentation de notre classe d'amorçage Spring Boot
+
+SecuredRestApi.java
+
+```
+package com.invivoo.springboot.securedrestapi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SecuredRestApi {
+	public static void main(String[] args) {
+		SpringApplication.run(SecuredRestApi.class, args);
+	}
+}
+```
