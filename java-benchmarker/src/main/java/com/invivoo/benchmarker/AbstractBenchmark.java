@@ -1,14 +1,29 @@
 package com.invivoo.benchmarker;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractBenchmark<V> implements Benchmark<V> {
+	final BenchValue values = new BenchValue();
+	
+	public final void bench(final Object param) {
+		values.reset();
+		if (param != null) {
+			measure(new Callable<Object>() {
 
-	private long timeSpent;
-	private long memoryConsumed;
-	private long tempMemory;
+				public Object call() throws Exception {
+					init(param);
+					return null;
+				}
+			});
+		}
+		measure(this);
+	}
+	
+	protected void init(Object param) {
+	}
 
-	public final void bench() {
+	private final void measure(Callable c) {
 		// ensuring mem is clean
 		Runtime runtime = Runtime.getRuntime();
 		runtime.gc();
@@ -18,7 +33,7 @@ public abstract class AbstractBenchmark<V> implements Benchmark<V> {
 		long beginMem = runtime.totalMemory() - runtime.freeMemory();
 		Object res = null;
 		try {
-			res = call();
+			res = c.call();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -29,47 +44,51 @@ public abstract class AbstractBenchmark<V> implements Benchmark<V> {
 		long endMem1 = runtime.totalMemory() - runtime.freeMemory();
 
 		// displaying
-		timeSpent = (endTime - beginTime);
-		memoryConsumed = -(beginMem - endMem0);
-		tempMemory = -(endMem1 - endMem0);
+		values.timeSpent += (endTime - beginTime);
+		values.memoryConsumed += -(beginMem - endMem0);
+		values.tempMemory += -(endMem1 - endMem0);
 	}
 	
+	
 	public long getTempMemory() {
-		return tempMemory;
+		return values.tempMemory;
 	}
 	
 	public long getMemoryConsumed() {
-		return memoryConsumed;
+		return values.memoryConsumed;
 	}
 	
 	public long getTimeSpent() {
-		return timeSpent;
+		return values.timeSpent;
 	}
 	
 	public String getDisplayTimeSpent() {
-		if (TimeUnit.SECONDS.convert(timeSpent, TimeUnit.NANOSECONDS) > 0) {
-			long nbMillis = TimeUnit.MILLISECONDS.convert(timeSpent, TimeUnit.NANOSECONDS); 
+		if (TimeUnit.SECONDS.convert(values.timeSpent, TimeUnit.NANOSECONDS) > 0) {
+			long nbMillis = TimeUnit.MILLISECONDS.convert(values.timeSpent, TimeUnit.NANOSECONDS); 
 			return (nbMillis/1000) +"." + (nbMillis%1000)+" s";
-		} else if (TimeUnit.MILLISECONDS.convert(timeSpent, TimeUnit.NANOSECONDS) > 0) {
-			return (timeSpent/1000000) +"." +(timeSpent%1000000)+" ms";
+		} else if (TimeUnit.MILLISECONDS.convert(values.timeSpent, TimeUnit.NANOSECONDS) > 0) {
+			return (values.timeSpent/1000000) +"." +(values.timeSpent%1000000)+" ms";
 		} else {
-			return timeSpent +" ns";
+			return values.timeSpent +" ns";
 		}
 	}
 	
 	@Override
 	public String toString() {
-		return "<"+getDescription()+" time="+" used memory="+memoryConsumed+" temp memory="+tempMemory;
-//		if (TimeUnit.SECONDS.convert(timeSpent, TimeUnit.NANOSECONDS) > 0) {
-//			long nbMillis = TimeUnit.MILLISECONDS.convert(timeSpent, TimeUnit.NANOSECONDS); 
-//			System.out.println("bench for " + benchmark.getDescription() + " time="+ (nbMillis/1000) +"." +(nbMillis%1000)+" s");
-//		} else if (TimeUnit.MILLISECONDS.convert(timeSpent, TimeUnit.NANOSECONDS) > 0) {
-//			System.out.println("bench for " + benchmark.getDescription() + " time="+ (timeSpent/1000000) +"." +(timeSpent%1000000)+" ms");
-//		} else {
-//			System.out.println("bench for " + benchmark.getDescription() + " time="+ timeSpent +" ns consumed");
-//		}
-//		System.out.println("bench for " + benchmark.getDescription() + " mem0="+memoryConsumed+" bytes consumed");
-//		System.out.println("bench for " + benchmark.getDescription() + " mem1="+(memoryConsumed - tempMemory)+" bytes consumed gc="+tempMemory+" bytes garbage collected");
-//		return display;
+		return "<"+getDescription()+" time="+" used memory="+values.memoryConsumed+" temp memory="+values.tempMemory;
+	}
+	
+	final class BenchValue {
+		long timeSpent;
+		long memoryConsumed;
+		long tempMemory;
+		
+		public void reset() {
+			timeSpent = 0;
+			memoryConsumed = 0;
+			tempMemory = 0;
+		}
+
+	
 	}
 }
