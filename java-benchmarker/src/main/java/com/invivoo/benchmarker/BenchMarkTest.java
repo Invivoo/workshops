@@ -11,8 +11,12 @@ import com.invivoo.benchmarker.thread.CounterCallable;
 import com.invivoo.benchmarker.thread.SleepCallable;
 import com.invivoo.benchmarker.thread.ThreadBenchmark;
 
+//-agentlib:hprof=heap=sites,net=localhost:6060,doe=n
 public class BenchMarkTest {
 	public static void main(String[] args) {
+		//Runtime.getRuntime().traceInstructions(true);
+		//Runtime.getRuntime().traceMethodCalls(true);
+
 		try {
 			System.out.println("BenchMarkTest.main()");
 			//Thread.sleep(40000);
@@ -79,13 +83,4 @@ public class BenchMarkTest {
 //		benchmark.bench();
 //		System.out.println("BenchMarkTest.bench(2) :" + benchmark.getDescription()+" time="+benchmark.getDisplayTimeSpent()+" used memory="+benchmark.getMemoryConsumed()+" temp memory="+benchmark.getTempMemory());
 	}
-
-	public static String concat(String A, String B) {
-		return new StringBuffer(A).append(B).toString();
-	}
-	
-	public static boolean testInstance(Object a, Class<Object> b) {
-		return a.getClass().isInstance(b);
-	}
-
 }
