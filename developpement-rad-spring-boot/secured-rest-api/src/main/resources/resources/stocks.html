@@ -1,0 +1,86 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html>
+	<head>
+		<title>Invivoo - Spring Boot - Key Concepts</title>
+		
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		
+		<style type="text/css">
+			*[ng-cloak]{
+				display: none;
+			}
+		</style>
+	</head>
+	
+	<body ng-app="Stock" class="container" ng-controller="StocksCtrl as stocksCtrl">
+		<div class="row">
+			<div class="col-sm-offset-3 col-sm-6">
+				<h1>Stocks</h1>
+				
+				<table class="table table-hover" ng-cloak="">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>ISIN</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="stock in stocksCtrl.stocks" ng-click="stocksCtrl.openStock(stock)">
+							<td>{{stock.name}}</td>
+							<td>{{stock.isin}}</td>
+						</tr>
+						<tr ng-if="stocksCtrl.stocks == undefined">
+							<td col-span="2">... Chargement ...
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title">Quotes</h4>
+					</div>
+					<div class="modal-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Date</th>
+									<th>Quote</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr ng-repeat="stockQuote in stocksCtrl.stock.stockQuotes">
+									<td>{{stockQuote.timestamp | date : 'shortDate'}}</td>
+									<td>{{stockQuote.quote}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+		<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+		
+		<script type="text/javascript" src="/js/stock-module.js"></script>
+		
+		<script type="text/javascript" src="/js/stocks-controller.js"></script>
+	</body>
+</html>

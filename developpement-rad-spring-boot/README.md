@@ -1,7 +1,5 @@
 # Développement RAD avec Spring Boot
 
-English version available [here](README-EN.md).
-
 ## Table of Contents
 1. [Prérequis](#prérequis)
 1. [Présentation](#presentation)
@@ -24,7 +22,7 @@ English version available [here](README-EN.md).
 
 ### Pourquoi Spring Boot ?
 
-Spring Boot apporter le patron de conception COC (Covention Over Configuration) au Framework Spring. Spring Boot vous aide à construire des applications le plus rapidement possible sans avoir à répéter des déclarations ou des configurations de beans standard.
+Spring Boot apporte le patron de conception COC (Covention Over Configuration) au Framework Spring. Spring Boot vous aide à construire des applications le plus rapidement possible sans avoir à répéter des déclarations ou des configurations de beans standard.
 
 Voici les principales fonctionnalités :
 
@@ -238,7 +236,7 @@ Notre projet nécessite donc les modules Spring Boot suivants :
 * spring-boot-starter-web
 * spring-boot-security
 
-En complément, nous utiliserons une base de données HSQLDB embarqué en mémoire. Elle facilitera notre développément
+En complément, nous utiliserons une base de données HSQLDB embarqué en mémoire. Elle facilitera notre développement
 
 Il n'y a qu'à les déclarer en dépendences au sein du `pom.xml`
 
@@ -265,62 +263,6 @@ Il n'y a qu'à les déclarer en dépendences au sein du `pom.xml`
 
 ### Création de nos entités métiers
 
-StockQuote.java
-
-```
-package com.invivoo.springboot.securedrestapi.entity;
-
-import java.math.BigDecimal;
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class StockQuote {
-	private long id;
-	private BigDecimal quote;
-	private Date timestamp;
-
-	public StockQuote() {
-
-	}
-
-	public StockQuote(long id, BigDecimal quote, Date timestamp) {
-		this.id = id;
-		this.quote = quote;
-		this.timestamp = timestamp;
-	}
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public BigDecimal getQuote() {
-		return quote;
-	}
-
-	public void setQuote(BigDecimal quote) {
-		this.quote = quote;
-	}
-
-	public Date getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
-	}
-}
-```
 
 Stock.java
 
@@ -335,6 +277,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Stock {
@@ -380,13 +324,84 @@ public class Stock {
 		this.isin = isin;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@JsonManagedReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
 	public List<StockQuote> getStockQuotes() {
 		return stockQuotes;
 	}
 
 	public void setStockQuotes(List<StockQuote> stockQuotes) {
 		this.stockQuotes = stockQuotes;
+	}
+}
+```
+
+StockQuote.java
+
+```
+ppackage com.invivoo.springboot.securedrestapi.entity;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity
+public class StockQuote {
+	private long id;
+	private Stock stock;
+	private Double quote;
+	private Date timestamp;
+
+	public StockQuote() {
+
+	}
+
+	public StockQuote(long id, Double quote, Date timestamp) {
+		this.id = id;
+		this.quote = quote;
+		this.timestamp = timestamp;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	@ManyToOne
+	@JsonBackReference
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
+
+	public Double getQuote() {
+		return quote;
+	}
+
+	public void setQuote(Double quote) {
+		this.quote = quote;
+	}
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
 	}
 }
 ```

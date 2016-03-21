@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Stock {
 	private long id;
@@ -53,7 +55,8 @@ public class Stock {
 		this.isin = isin;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@JsonManagedReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="stock")
 	public List<StockQuote> getStockQuotes() {
 		return stockQuotes;
 	}
