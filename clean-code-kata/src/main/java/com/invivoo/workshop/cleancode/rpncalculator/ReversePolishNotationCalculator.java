@@ -12,17 +12,17 @@ public class ReversePolishNotationCalculator {
     }
 
     static int computeFrom(String rpnInput) {
-        Deque<Integer> inputDeque = new ArrayDeque<>();
+        Deque<Integer> numbers = new ArrayDeque<>();
 
         Arrays.stream(rpnInput.split(RPN_INPUT_SEPARATOR))
-              .forEach(integerOrOperand -> inputDeque.push(getNextOrApplyOperand(inputDeque, integerOrOperand)));
+              .forEach(integerOrOperand -> numbers.push(getNextOrApplyOperand(numbers, integerOrOperand)));
 
-        return inputDeque.pop();
+        return numbers.pop();
     }
 
-    private static Integer getNextOrApplyOperand(Deque<Integer> inputDeque, String integerOrOperand) {
+    private static Integer getNextOrApplyOperand(Deque<Integer> numbers, String integerOrOperand) {
         return RPNOperand.getOperandFromSign(integerOrOperand)
-                         .map(op -> op.apply(inputDeque.pop(), inputDeque.pop()))
+                         .map(op -> op.apply(numbers.pop(), numbers.pop()))
                          .orElseGet(() -> Integer.parseInt(integerOrOperand));
     }
 
