@@ -8,16 +8,16 @@ public class ReversePolishNotationCalculator {
 
     static final String RPN_INPUT_SEPARATOR = " ";
 
-    static int calculate(String input) {
+    static int calculate(String rpnInput) {
         Deque<Integer> inputDeque = new ArrayDeque<>();
 
-        Arrays.stream(input.split(RPN_INPUT_SEPARATOR))
-              .forEach(integerOrOperand -> pushInputIntoDeque(inputDeque, integerOrOperand));
+        Arrays.stream(rpnInput.split(RPN_INPUT_SEPARATOR))
+              .forEach(integerOrOperand -> pushResultOfOperationOrNewInteger(inputDeque, integerOrOperand));
 
         return inputDeque.pop();
     }
 
-    private static void pushInputIntoDeque(Deque<Integer> inputDeque, String integerOrOperand) {
+    private static void pushResultOfOperationOrNewInteger(Deque<Integer> inputDeque, String integerOrOperand) {
         inputDeque.push(RPNOperand.getOperandFromSign(integerOrOperand)
                                   .map(op -> op.getOperation().apply(inputDeque.pop(), inputDeque.pop()))
                                   .orElseGet(() -> Integer.parseInt(integerOrOperand)));
