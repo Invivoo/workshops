@@ -13,7 +13,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 1;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -26,7 +26,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 2;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -39,7 +39,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 3;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -52,7 +52,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 6;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -65,7 +65,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 6;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -78,7 +78,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 5;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -91,7 +91,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 6;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -104,7 +104,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 7;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -117,7 +117,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 6;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -130,7 +130,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 4;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -143,7 +143,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 100;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -156,7 +156,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 3;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);
@@ -169,7 +169,7 @@ class ReversePolishNotationCalculatorTest {
         int expectedResult = 141;
 
         // When
-        int result = ReversePolishNotationCalculator.calculate(input);
+        int result = ReversePolishNotationCalculator.computeFrom(input);
 
         // Then
         assertEquals(result, expectedResult);

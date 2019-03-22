@@ -6,21 +6,24 @@ import java.util.Deque;
 
 public class ReversePolishNotationCalculator {
 
-    static final String RPN_INPUT_SEPARATOR = " ";
+    private static final String RPN_INPUT_SEPARATOR = " ";
 
-    static int calculate(String rpnInput) {
+    private ReversePolishNotationCalculator() {
+    }
+
+    static int computeFrom(String rpnInput) {
         Deque<Integer> inputDeque = new ArrayDeque<>();
 
         Arrays.stream(rpnInput.split(RPN_INPUT_SEPARATOR))
-              .forEach(integerOrOperand -> pushResultOfOperationOrNewInteger(inputDeque, integerOrOperand));
+              .forEach(integerOrOperand -> inputDeque.push(getNextOrApplyOperand(inputDeque, integerOrOperand)));
 
         return inputDeque.pop();
     }
 
-    private static void pushResultOfOperationOrNewInteger(Deque<Integer> inputDeque, String integerOrOperand) {
-        inputDeque.push(RPNOperand.getOperandFromSign(integerOrOperand)
-                                  .map(op -> op.getOperation().apply(inputDeque.pop(), inputDeque.pop()))
-                                  .orElseGet(() -> Integer.parseInt(integerOrOperand)));
+    private static Integer getNextOrApplyOperand(Deque<Integer> inputDeque, String integerOrOperand) {
+        return RPNOperand.getOperandFromSign(integerOrOperand)
+                         .map(op -> op.apply(inputDeque.pop(), inputDeque.pop()))
+                         .orElseGet(() -> Integer.parseInt(integerOrOperand));
     }
 
 }

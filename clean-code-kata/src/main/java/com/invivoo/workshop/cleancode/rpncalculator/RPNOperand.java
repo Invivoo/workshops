@@ -22,16 +22,12 @@ public enum RPNOperand {
 
     public static Optional<RPNOperand> getOperandFromSign(String operand) {
         return Arrays.stream(RPNOperand.values())
-                     .filter(op -> op.getOperand().equals(operand))
+                     .filter(op -> op.operand.equals(operand))
                      .findFirst();
     }
 
-    public String getOperand() {
-        return operand;
-    }
-
-    public BiFunction<Integer, Integer, Integer> getOperation() {
-        return operation;
+    public int apply(int left, int right) {
+        return operation.apply(left, right);
     }
 
 }
