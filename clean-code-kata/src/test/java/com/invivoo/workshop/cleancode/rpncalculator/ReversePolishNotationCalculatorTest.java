@@ -123,7 +123,7 @@ class ReversePolishNotationCalculatorTest {
         assertEquals(result, expectedResult);
     }
 
-/*    @Test
+    @Test
     public void should_compute_4_for_input_20_5_DIV() {
         // Given
         String input = "20 5 /";
@@ -134,7 +134,7 @@ class ReversePolishNotationCalculatorTest {
 
         // Then
         assertEquals(result, expectedResult);
-    }*/
+    }
 
     @Test
     public void should_compute_100_for_input_20_5_MULT() {
