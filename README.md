@@ -1,7 +1,7 @@
 # Invivoo Workshops
 Invivoo workshops
 
-Vous retrouverez ici tous les projets liés aux [formations d'Invivoo](http://www.invivoo.com/agenda/#).
+Vous retrouverez ici tous les projets liés aux [workshops d'Invivoo](http://www.invivoo.com/agenda/#).
 
 Chaque dossier sera un projet que l'on nommera en respectant la convention suivante : nom-de-la-techno-nom-du-projet.
 
