@@ -1,0 +1,21 @@
+
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+Q
+!clean-code-kata/files/comptes.txt,1/6/16573499212fc402e96ea236b09d08718d31e972
+R
+"clean-code-kata/files/emprunts.txt,6/d/6d58d117653fa6d5c5a19786c39d2b2ee66391fe
+á
+Wclean-code-kata/src/main/java/com/invivoo/workshop/cleancode/legacy/entity/Account.java,e/a/ea04ca6bf87c78e6ce4b0340a04df3e932692070
+Ñ
+Tclean-code-kata/src/main/java/com/invivoo/workshop/cleancode/legacy/entity/Loan.java,b/d/bd6766f881ab10bba084f967f5b44c0d250f20a0
+è
+_clean-code-kata/src/main/java/com/invivoo/workshop/cleancode/legacy/service/AccountService.java,5/f/5f0e40b4d3e4cb55f79c90d3cc310e059017d27b
+ü
+oclean-code-kata/src/main/java/com/invivoo/workshop/cleancode/rpncalculator/ReversePolishNotationCalculator.java,2/4/24a9f868e32d8f2dd5ccbdae66deca9ae62a9f38
+ì
+cclean-code-kata/src/test/java/com/invivoo/workshop/cleancode/legacy/service/AccountServiceTest.java,f/9/f9014df26588b77b7a4f1bb28d1b4669b7cc96e8
+£
+sclean-code-kata/src/test/java/com/invivoo/workshop/cleancode/rpncalculator/ReversePolishNotationCalculatorTest.java,3/3/331bfda718c97c0276d428b6490152a7cc0cb336
+G
+clean-code-kata/pom.xml,8/b/8bbd82f66e9639f2c18894c786cb8142cb071ced
