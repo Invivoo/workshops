@@ -81,7 +81,7 @@ class BookServiceTest {
     void getWordOccurrences() {
         Map<String, Long> wordOccurrences = BookService.getWordOccurrences(germinalWords);
 
-        assertEquals(3772, wordOccurrences.get("le"));
+        assertEquals(3772L, (long) wordOccurrences.get("le"));
     }
 
     @Test
@@ -94,10 +94,10 @@ class BookServiceTest {
 
     @Test
     void getMostPresentWord() {
-        Map.Entry<String, Long> mostPresentWord = BookService.getMostPresentWord(germinalWords);
+        Map.Entry<String, Long> wordAndOccurences = BookService.getMostPresentWord(germinalWords);
 
-        assertEquals("de", mostPresentWord.getKey());
-        assertEquals(7231, mostPresentWord.getValue());
+        assertEquals("de", wordAndOccurences.getKey());
+        assertEquals(7231L, (long) wordAndOccurences.getValue());
     }
 
     @Test
