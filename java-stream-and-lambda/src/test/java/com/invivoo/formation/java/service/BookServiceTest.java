@@ -132,15 +132,6 @@ class BookServiceTest {
         assertEquals("hij", encryptedWithShift10);
     }
 
-    @Test
-    void encryptWithCaesarCipher2() {
-        String encryptedWithShift1 = BookService.encryptWithCaesarCipher2("abcde", 1);
-        String encryptedWithShift10 = BookService.encryptWithCaesarCipher2("xyz", 10);
-
-        assertEquals("bcdef", encryptedWithShift1);
-        assertEquals("hij", encryptedWithShift10);
-    }
-
     private static <T> void assertOptionalContainAndEquals(Optional<T> value, T expected) {
         Assertions.assertTrue(value.isPresent());
         System.out.println(expected.equals(value.get()));
