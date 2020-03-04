@@ -5,68 +5,64 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Stream;
 
-public class BookService {
+class BookService {
 
-    public static Optional<String> getLongestWord(List<String> words) {
+    static Optional<String> getLongestWord(List<String> words) {
         return Optional.empty();
     }
 
-    public static List<String> getWordsOfSizeUppercase(List<String> words, int size) {
+    static List<String> getWordsOfSizeUppercase(List<String> words, int size) {
         return Collections.emptyList();
     }
 
-    public static List<String> getDistinctSmallestWordsSorted(List<String> words) {
+    static List<String> getDistinctSmallestWordsSorted(List<String> words) {
         return Collections.emptyList();
     }
 
-    public static Double getAverageWordLenght(List<String> words) {
+    static Double getAverageWordLenght(List<String> words) {
         return 0d;
     }
 
-    public static Map<Integer, List<String>> groupWordsByLenght(List<String> words) {
+    static Map<Integer, List<String>> groupWordsByLenght(List<String> words) {
         return new HashMap<>();
     }
 
-    public static Map<String, Long> getWordOccurrences(List<String> words) {
+    static Map<String, Long> getWordOccurrences(List<String> words) {
         return new HashMap<>();
     }
 
-    public static Map<Boolean, List<String>> getPartionnedWordsByIfContainsUppercase(List<String> words) {
+    static Map<Boolean, List<String>> getPartionnedWordsByIfContainsUppercase(List<String> words) {
         return new HashMap<>();
     }
 
-    private static boolean containUppercase(String word) {
-        return word.chars().anyMatch(Character::isUpperCase);
-    }
-
-    public static Map.Entry<String, Long> getMostPresentWord(List<String> words) {
+    static Map.Entry<String, Long> getMostPresentWord(List<String> words) {
         return null;
     }
 
-    private static Stream<String> getAlphabeticalCharactersOfWord(String word) {
-        return null;
-    }
-
-    public static List<String> getAllDistinctLettersOrderedAlphabetically(List<String> words) {
+    static List<String> getAllDistinctLettersOrderedAlphabetically(List<String> words) {
         return Collections.emptyList();
     }
 
-
-    public static List<String> getAllPalindromesUppercase(List<String> words, int minLength) {
+    static List<String> getAllPalindromesUppercase(List<String> words, int minLength) {
         return Collections.emptyList();
     }
 
-    public static String getMostPresentPalindrome(List<String> words, int minLength) {
+    static String getMostPresentPalindrome(List<String> words, int minLength) {
         return "";
     }
 
-    public static String encryptWithCaesarCipher(String word, int shift) {
-        return "";
-    }
-
-    public static String encryptWithCaesarCipher2(String word, int shift) {
+    /**
+     * Par exemple avec un shift de 3 voici l'alphabet
+     *
+     * clair   : ABCDEFGHIJKLMNOPQRSTUVWXYZ
+     * chiffré : DEFGHIJKLMNOPQRSTUVWXYZABC
+     *
+     * @param word to encrypt
+     * @param shift
+     * @return
+     */
+    static String encryptWithCaesarCipher(String word, int shift) {
         return "";
     }
 
