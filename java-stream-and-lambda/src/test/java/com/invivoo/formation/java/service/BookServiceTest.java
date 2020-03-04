@@ -118,7 +118,7 @@ class BookServiceTest {
 
     @Test
     void getMostPresentPalindromes() {
-        String mostPresentPalindrome = BookService.getMostPresentPalindrome(germinalWords, 3);
+        String mostPresentPalindrome = BookService.getMostPresentPalindromeUppercase(germinalWords, 3);
 
         assertEquals("SES", mostPresentPalindrome);
     }

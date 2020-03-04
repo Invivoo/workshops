@@ -48,7 +48,7 @@ class BookService {
         return Collections.emptyList();
     }
 
-    static String getMostPresentPalindrome(List<String> words, int minLength) {
+    static String getMostPresentPalindromeUppercase(List<String> words, int minLength) {
         return "";
     }
 
