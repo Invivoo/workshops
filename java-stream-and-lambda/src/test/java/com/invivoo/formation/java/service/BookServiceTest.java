@@ -112,7 +112,7 @@ class BookServiceTest {
     void getAllPalindromes() {
         List<String> palindromes = BookService.getAllPalindromesUppercase(germinalWords, 3);
 
-        assertEquals(17, palindromes.size());
+        assertEquals(2499, palindromes.size());
         assertTrue(palindromes.contains("ELLE"));
     }
 
@@ -120,7 +120,7 @@ class BookServiceTest {
     void getMostPresentPalindromes() {
         String mostPresentPalindrome = BookService.getMostPresentPalindromeUppercase(germinalWords, 3);
 
-        assertEquals("SES", mostPresentPalindrome);
+        assertEquals("ELLE", mostPresentPalindrome);
     }
 
     @Test

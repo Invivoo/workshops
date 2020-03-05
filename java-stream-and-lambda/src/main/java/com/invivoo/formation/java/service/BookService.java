@@ -44,6 +44,17 @@ class BookService {
         return Collections.emptyList();
     }
 
+    /**
+     *
+     * Un palindrome est un mot que l'on peut lire indifféremment de gauche à droite
+     * et de droite à gauche.
+     *
+     * Par exemple ELLE
+     *
+     * @param words
+     * @param minLength
+     * @return
+     */
     static List<String> getAllPalindromesUppercase(List<String> words, int minLength) {
         return Collections.emptyList();
     }
@@ -54,9 +65,11 @@ class BookService {
 
     /**
      * Par exemple avec un shift de 3 voici l'alphabet
+     * Nous admettons qu'il faut passer les lettres en minuscules et nous n'avons pas
+     * d'autres caractère en paramètre de la fonction que des lettres
      *
-     * clair   : ABCDEFGHIJKLMNOPQRSTUVWXYZ
-     * chiffré : DEFGHIJKLMNOPQRSTUVWXYZABC
+     * clair   : abcz
+     * chiffré : defc
      *
      * @param word to encrypt
      * @param shift
