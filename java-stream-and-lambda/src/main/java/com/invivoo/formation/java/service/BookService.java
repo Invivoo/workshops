@@ -90,6 +90,7 @@ class BookService {
     static List<String> getAllDistinctLettersOrderedAlphabetically(List<String> words) {
         return words.stream()
                     .flatMap(BookService::getAlphabeticalCharactersOfWord)
+                    .map(String::toUpperCase)
                     .distinct()
                     .sorted()
                     .collect(Collectors.toList());
