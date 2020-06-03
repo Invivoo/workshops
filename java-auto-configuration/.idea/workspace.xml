@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f0d6fd07-bc9b-4520-a607-f60c6de3e431" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1cp7sgbnfivWYJc4NS79QvGdV1T" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.invivoo" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="14" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.invivoo.App" />
+      <module name="java-webapp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.invivoo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f0d6fd07-bc9b-4520-a607-f60c6de3e431" name="Default Changelist" comment="" />
+      <created>1591213889003</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591213889003</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591220732006">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1591220732006" />
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1591217731214">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1591217731214" />
+    <state x="328" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1591218647310">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="328" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1591218647310" />
+    <state x="566" y="294" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1591218649656">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="566" y="294" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.824@0.0.1536.824" timestamp="1591218649656" />
+    <state width="1493" height="476" key="GridCell.Tab.0.bottom" timestamp="1591221073044">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="476" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591221073044" />
+    <state width="1493" height="476" key="GridCell.Tab.0.center" timestamp="1591221073044">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="476" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591221073044" />
+    <state width="1493" height="476" key="GridCell.Tab.0.left" timestamp="1591221073044">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="476" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591221073044" />
+    <state width="1493" height="476" key="GridCell.Tab.0.right" timestamp="1591221073044">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="476" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591221073044" />
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1591216261466">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1591216261466" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1591220927700">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1591220927700" />
+  </component>
+</project>

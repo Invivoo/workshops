@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/java-auto-configuration.iml" filepath="$PROJECT_DIR$/java-auto-configuration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-service/java-service.iml" filepath="$PROJECT_DIR$/java-service/java-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-starter/java-starter.iml" filepath="$PROJECT_DIR$/java-starter/java-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-webapp/java-webapp.iml" filepath="$PROJECT_DIR$/java-webapp/java-webapp.iml" />
+    </modules>
+  </component>
+</project>
