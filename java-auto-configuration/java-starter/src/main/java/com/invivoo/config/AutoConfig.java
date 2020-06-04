@@ -1,5 +1,6 @@
 package com.invivoo.config;
 
+import com.invivoo.IMeteoService;
 import com.invivoo.MeteoService;
 import com.invivoo.properties.MeteoProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class AutoConfig {
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "meteo", value = "temperature", matchIfMissing=true)
-    public MeteoService meteoService() {
-        return new MeteoService(Optional.ofNullable(meteoProperties.getTemperature()).orElse("0"));
+    @ConditionalOnProperty(prefix = "meteo", value = "temperature")
+    public IMeteoService meteoService() {
+        return new MeteoService(meteoProperties.getTemperature());
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class App implements CommandLineRunner
 {
     @Autowired
-    private MeteoService meteoService;
+    private IMeteoService meteoService;
 
     public static void main( String[] args )
     {
