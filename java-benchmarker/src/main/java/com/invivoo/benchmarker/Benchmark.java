@@ -3,7 +3,7 @@ package com.invivoo.benchmarker;
 import java.util.concurrent.Callable;
 
 public interface Benchmark<V> extends Callable<V> {
-	public void bench();
+	public void bench(Object param);
 	
 	String getDescription();
 	
